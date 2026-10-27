@@ -1,0 +1,237 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const breadcrumbsSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://reversekrillion.com/" }
+  ]
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is Reverse Krillion?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reverse Krillion is a reverse-trivia word game where players try to submit the rarest, least commonly guessed valid answers to reach maximum submarine depth (>7,000m) in an oceanic trench. Unlike standard trivia where popular answers win, in Reverse Krillion popular answers are penalizing crowd traps."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the submarine depth scoring work?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Depth is calculated inversely to global submission percentages. Answers chosen by < 1% of players yield +900m to +1,000m (Hadal Trench zone), while common answers chosen by > 20% of players yield under 150m (Surface Trap)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Reverse Krillion free to play?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, Reverse Krillion is 100% free with no login, app install, or subscription required."
+      }
+    }
+  ]
+};
+---
+
+<Layout
+  title="Reverse Krillion | Play Backwards Reverse Trivia Word Game Online"
+  description="Play Reverse Krillion online for free. The viral backwards puzzle where the least obvious, rarest answers dive your submarine to the 7,000m Hadal Trench. Play today's daily puzzle now!"
+  schema={{ ...breadcrumbsSchema, ...faqSchema }}
+>
+  <div class="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-10">
+    
+    <!-- Hero Intent & Direct Answer First -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-white/10 pb-8">
+      <div class="space-y-3 max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0a1d36] border border-[#4de3ff]/30 text-[#4de3ff] text-xs font-mono font-bold">
+          <span>⟲ OFFICIAL REVERSE KRILLION PORTAL</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-[#ffd166]"></span>
+          <span>DAILY SEED READY</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
+          Reverse Krillion: Play Backwards Trivia Online
+        </h1>
+        <p class="text-[#8fa3c4] text-xs sm:text-sm leading-relaxed">
+          <strong class="text-white">Answer First Rule:</strong> Reverse Krillion inverts classic pub trivia. Instead of giving the most famous answer, your submarine plunges deeper only when you provide valid, strictly verifiable answers with the <span class="text-[#ffd166] font-semibold">lowest crowd submission rate</span>. Common answers trigger the Surface Trap (0m-150m); obscure gems unlock the 7,000m Hadal Trench.
+        </p>
+      </div>
+
+      <div class="p-5 rounded-2xl bg-[#0a1d36] border border-[#4de3ff]/20 text-right min-w-[220px] space-y-1 shadow-lg">
+        <span class="text-[11px] font-mono uppercase tracking-wider text-[#8fa3c4]">Target Objective</span>
+        <div class="text-2xl sm:text-3xl font-black text-[#4de3ff] font-mono">7,000m TRENCH</div>
+        <div class="text-[11px] font-mono text-[#ffd166]">Sub-1% Rarity Required</div>
+      </div>
+    </div>
+
+    <!-- Playable Game Viewport -->
+    <div class="rounded-3xl bg-[#0a1d36] border border-[#4de3ff]/30 p-2 shadow-2xl overflow-hidden">
+      <div class="bg-[#061325] px-4 py-3 rounded-2xl border border-white/5 flex items-center justify-between mb-2">
+        <div class="flex items-center gap-2 text-xs font-mono">
+          <span class="relative flex h-2.5 w-2.5">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#4de3ff] opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#4de3ff]"></span>
+          </span>
+          <span class="text-white font-bold">ACTIVE SIMULATION: REVERSE TRENCH ARENA</span>
+        </div>
+        <div class="flex items-center gap-2 text-xs font-mono">
+          <a href="/word-bank/" class="text-[#ffd166] hover:underline">Word Bank ↗</a>
+        </div>
+      </div>
+
+      <div class="relative w-full aspect-[16/10] sm:aspect-[16/9] min-h-[500px] rounded-2xl overflow-hidden bg-[#020611]">
+        <iframe
+          src="https://www.krillion.org/play/endless/"
+          title="Reverse Krillion Interactive Arena"
+          class="w-full h-full border-0"
+          allow="fullscreen"
+          loading="eager"
+        ></iframe>
+      </div>
+    </div>
+
+    <!-- Interactive Reverse Depth Calculator Widget (Unique Toolification) -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-[#0a1d36] border border-white/10 shadow-xl space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-5">
+        <div>
+          <span class="text-[11px] font-mono text-[#ffd166] font-bold uppercase tracking-wider">Interactive Tool</span>
+          <h2 class="text-xl sm:text-2xl font-black text-white">Reverse Depth & Rarity Estimator</h2>
+          <p class="text-xs text-[#8fa3c4] mt-1">Simulate your submarine depth yield based on estimated crowd popularity.</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="space-y-4">
+          <label class="block text-xs font-mono text-slate-300">
+            <span>Estimated Global Pick Frequency:</span>
+            <span id="calc-pct-label" class="text-[#4de3ff] font-bold ml-2">0.8%</span>
+          </label>
+          <input
+            id="calc-slider"
+            type="range"
+            min="0.1"
+            max="50"
+            step="0.1"
+            value="0.8"
+            class="w-full h-2 bg-[#061325] rounded-lg appearance-none cursor-pointer accent-[#4de3ff]"
+          />
+          <div class="flex justify-between text-[10px] font-mono text-[#8fa3c4]">
+            <span>0.1% (Extreme Rarity)</span>
+            <span>25%</span>
+            <span>50% (Crowd Trap)</span>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#061325] border border-white/5 space-y-1 text-center flex flex-col justify-center">
+          <span class="text-[11px] font-mono text-[#8fa3c4]">Calculated Depth Yield</span>
+          <span id="calc-depth-result" class="text-3xl font-black text-[#4de3ff] font-mono">+970m</span>
+          <span id="calc-zone-badge" class="inline-block mt-1 text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#4de3ff]/10 text-[#4de3ff] border border-[#4de3ff]/30 mx-auto">
+            Hadal Trench Zone
+          </span>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-[#061325] border border-white/5 space-y-2 flex flex-col justify-center text-xs text-[#8fa3c4]">
+          <span class="font-bold text-white flex items-center gap-1.5">
+            <span class="text-[#ffd166]">💡</span>
+            <span>Strategic Verdict:</span>
+          </span>
+          <p id="calc-advice" class="text-[11px] leading-relaxed">
+            Superior choice. Less than 1% of the global player base submits this category item. Guarantees near-maximum descent.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cluster Links Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <a href="/rules/" class="p-6 rounded-3xl bg-[#0a1d36] hover:bg-[#0e2748] border border-white/10 hover:border-[#4de3ff]/40 transition-all space-y-3 group">
+        <div class="w-10 h-10 rounded-xl bg-[#061325] border border-white/10 flex items-center justify-center text-[#4de3ff] font-mono font-bold text-base group-hover:border-[#4de3ff]">
+          01
+        </div>
+        <h3 class="text-lg font-bold text-white group-hover:text-[#4de3ff] transition-colors">Scoring & Depth Rules</h3>
+        <p class="text-xs text-[#8fa3c4] leading-relaxed">
+          Detailed mathematical breakdown of Hadal, Abyssal, and Bathyal depths and why crowd answers result in immediate surfacing.
+        </p>
+      </a>
+
+      <a href="/word-bank/" class="p-6 rounded-3xl bg-[#0a1d36] hover:bg-[#0e2748] border border-white/10 hover:border-[#ffd166]/40 transition-all space-y-3 group">
+        <div class="w-10 h-10 rounded-xl bg-[#061325] border border-white/10 flex items-center justify-center text-[#ffd166] font-mono font-bold text-base group-hover:border-[#ffd166]">
+          02
+        </div>
+        <h3 class="text-lg font-bold text-white group-hover:text-[#ffd166] transition-colors">7,000m Rare Word Bank</h3>
+        <p class="text-xs text-[#8fa3c4] leading-relaxed">
+          Curated and searchable archive of valid high-yield answers across geography, cinema, history, sports, and science.
+        </p>
+      </a>
+
+      <a href="/vs-standard/" class="p-6 rounded-3xl bg-[#0a1d36] hover:bg-[#0e2748] border border-white/10 hover:border-[#4de3ff]/40 transition-all space-y-3 group">
+        <div class="w-10 h-10 rounded-xl bg-[#061325] border border-white/10 flex items-center justify-center text-[#4de3ff] font-mono font-bold text-base group-hover:border-[#4de3ff]">
+          03
+        </div>
+        <h3 class="text-lg font-bold text-white group-hover:text-[#4de3ff] transition-colors">Reverse vs Normal Krillion</h3>
+        <p class="text-xs text-[#8fa3c4] leading-relaxed">
+          Comprehensive comparison guide analyzing why reverse trivia requires an entirely different psychological heuristic.
+        </p>
+      </a>
+    </div>
+
+    <!-- FAQ Section -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-[#0a1d36] border border-white/10 space-y-6">
+      <h2 class="text-2xl font-black text-white">Frequently Asked Questions</h2>
+      <div class="space-y-4">
+        {faqSchema.mainEntity.map(faq => (
+          <div class="p-5 rounded-2xl bg-[#061325] border border-white/5 space-y-2">
+            <h3 class="text-sm font-bold text-[#4de3ff]">{faq.name}</h3>
+            <p class="text-xs text-[#8fa3c4] leading-relaxed">{faq.acceptedAnswer.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Calculator Script -->
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const slider = document.getElementById('calc-slider');
+      const pctLabel = document.getElementById('calc-pct-label');
+      const depthResult = document.getElementById('calc-depth-result');
+      const zoneBadge = document.getElementById('calc-zone-badge');
+      const advice = document.getElementById('calc-advice');
+
+      if (!slider) return;
+
+      slider.addEventListener('input', () => {
+        const val = parseFloat(slider.value);
+        pctLabel.textContent = val.toFixed(1) + '%';
+
+        let depth = Math.round(1000 * Math.exp(-val / 7.5));
+        if (depth > 1000) depth = 1000;
+        if (depth < 20) depth = 20;
+
+        depthResult.textContent = '+' + depth + 'm';
+
+        if (val < 2.0) {
+          zoneBadge.textContent = 'Hadal Trench Zone';
+          zoneBadge.className = 'inline-block mt-1 text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#4de3ff]/10 text-[#4de3ff] border border-[#4de3ff]/30 mx-auto';
+          advice.textContent = 'Superior choice. Less than 2% of the global player base submits this. Guarantees near-maximum descent.';
+        } else if (val < 10.0) {
+          zoneBadge.textContent = 'Abyssal Zone';
+          zoneBadge.className = 'inline-block mt-1 text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#8fa3c4]/10 text-[#8fa3c4] border border-[#8fa3c4]/30 mx-auto';
+          advice.textContent = 'Solid mid-tier response. Gives reliable depth without risking disqualification for invalid submission.';
+        } else {
+          zoneBadge.textContent = '⚠️ Surface Trap Hazard';
+          zoneBadge.className = 'inline-block mt-1 text-[10px] font-mono px-2 py-0.5 rounded-full bg-[#ffd166]/10 text-[#ffd166] border border-[#ffd166]/30 mx-auto';
+          advice.textContent = 'High crowd hazard! Too many players guess this answer, causing submarine descent to stall out under 200m.';
+        }
+      });
+    });
+  </script>
+</Layout>

@@ -1,0 +1,146 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const breadcrumbs = [
+  { label: 'Home', href: '/' },
+  { label: 'Rules & Depth Scoring' }
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Reverse Krillion Depth Scoring Rules & Mathematical Guide",
+  "description": "Complete breakdown of the inverse popularity mathematics, bathymetric depth zones, and anti-crowd algorithms behind Reverse Krillion.",
+  "author": { "@type": "Organization", "name": "Reverse Krillion Guild" }
+};
+---
+
+<Layout
+  title="Reverse Krillion Scoring Rules & Depth Mathematics | 7,000m Hadal Guide"
+  description="Master the scoring algorithms of Reverse Krillion. Understand how popularity decay functions, why crowd consensus penalizes your dive, and how to reach 7,000m Hadal depth."
+  canonical="/rules/"
+  schema={schema}
+>
+  <div class="py-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-10">
+    <div class="space-y-3 border-b border-white/10 pb-6">
+      <div class="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#ffd166]">
+        <span>RULES & ALGORITHMS</span>
+        <span>•</span>
+        <span>BATHYMETRIC SCORING</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-black text-white">
+        Reverse Krillion: Depth Scoring Rules & Axioms
+      </h1>
+      <p class="text-xs sm:text-sm text-[#8fa3c4] leading-relaxed">
+        Reverse Krillion rejects classical trivia rules. This document explains the exact mathematical formulas, crowd density penalties, and zone thresholds required to complete a 7,000m deep dive.
+      </p>
+    </div>
+
+    <!-- Mathematical Formula Breakdown -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-[#0a1d36] border border-[#4de3ff]/20 space-y-5">
+      <div class="flex items-center gap-2 text-[#4de3ff] font-mono text-xs font-bold uppercase tracking-wider">
+        <span>01. The Inverse Decay Function</span>
+      </div>
+      <h2 class="text-xl font-bold text-white">How Submarine Depth is Calculated</h2>
+      <p class="text-xs sm:text-sm text-[#8fa3c4] leading-relaxed">
+        Every round presents an open-ended category prompt (e.g. <em class="text-white">"Name a European sovereign nation"</em> or <em class="text-white">"Name a Nobel Prize laureate in Physics"</em>). When you submit your answer, the game computes the global selection frequency <code class="text-[#4de3ff] bg-[#061325] px-2 py-0.5 rounded font-mono font-bold">P</code> against all submitted player attempts for that daily cycle.
+      </p>
+
+      <div class="p-4 rounded-2xl bg-[#061325] border border-white/10 font-mono text-xs text-center space-y-2">
+        <div class="text-[#8fa3c4]">Mathematical Model:</div>
+        <div class="text-base sm:text-lg text-[#ffd166] font-bold">
+          Depth Yield (m) = Base × e<sup>(-λ × P)</sup> - Invalid_Penalty
+        </div>
+        <div class="text-[11px] text-[#8fa3c4]">
+          Where Base = 1,000m, λ = 0.133, and P is the global crowd percentage.
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 Depth Zones Table -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-[#0a1d36] border border-white/10 space-y-5">
+      <h2 class="text-xl font-bold text-white">The 4 Bathymetric Depth Zones</h2>
+      <div class="overflow-x-auto rounded-2xl border border-white/10">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="border-b border-white/10 bg-[#061325] text-[#8fa3c4] font-mono uppercase">
+              <th class="py-3 px-4">Depth Zone</th>
+              <th class="py-3 px-4">Crowd Selection %</th>
+              <th class="py-3 px-4">Round Yield</th>
+              <th class="py-3 px-4">Strategic Verdict</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 font-mono">
+            <tr class="hover:bg-white/5">
+              <td class="py-3.5 px-4 font-bold text-[#4de3ff]">🌊 Hadal Zone</td>
+              <td class="py-3.5 px-4">&lt; 1.5%</td>
+              <td class="py-3.5 px-4 font-bold text-white">+900m ~ 1,000m</td>
+              <td class="py-3.5 px-4 text-[#8fa3c4] font-sans">Ideal target. 7 consecutive Hadal answers hit 7,000m.</td>
+            </tr>
+            <tr class="hover:bg-white/5">
+              <td class="py-3.5 px-4 font-bold text-[#8fa3c4]">⚓ Abyssal Zone</td>
+              <td class="py-3.5 px-4">1.5% ~ 8.0%</td>
+              <td class="py-3.5 px-4 font-bold text-white">+600m ~ 890m</td>
+              <td class="py-3.5 px-4 text-[#8fa3c4] font-sans">Reliable descent. Safe cushion against disqualified entries.</td>
+            </tr>
+            <tr class="hover:bg-white/5">
+              <td class="py-3.5 px-4 font-bold text-slate-300">⚠️ Bathyal Shelf</td>
+              <td class="py-3.5 px-4">8.0% ~ 20.0%</td>
+              <td class="py-3.5 px-4 font-bold text-white">+200m ~ 590m</td>
+              <td class="py-3.5 px-4 text-[#8fa3c4] font-sans">Dangerous drag. Multiple rounds here will fail the trench.</td>
+            </tr>
+            <tr class="hover:bg-white/5">
+              <td class="py-3.5 px-4 font-bold text-[#ffd166]">🚨 Surface Trap</td>
+              <td class="py-3.5 px-4">&gt; 20.0%</td>
+              <td class="py-3.5 px-4 font-bold text-[#ffd166]">0m ~ 190m</td>
+              <td class="py-3.5 px-4 text-[#8fa3c4] font-sans">Catastrophic collapse. The most obvious answers kill the dive.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- The 3 Cardinal Rules -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="p-6 rounded-3xl bg-[#0a1d36] border border-white/10 space-y-2">
+        <div class="text-[#ffd166] font-mono text-sm font-bold">Rule 01</div>
+        <h3 class="text-base font-bold text-white">Validity is Non-Negotiable</h3>
+        <p class="text-xs text-[#8fa3c4] leading-relaxed">
+          An answer that does not strictly satisfy the prompt criteria receives 0m and inflicts a hull integrity penalty. Obscurity only counts if strictly correct.
+        </p>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-[#0a1d36] border border-white/10 space-y-2">
+        <div class="text-[#4de3ff] font-mono text-sm font-bold">Rule 02</div>
+        <h3 class="text-base font-bold text-white">Beware The "Clever" Trap</h3>
+        <p class="text-xs text-[#8fa3c4] leading-relaxed">
+          Answers that *sound* obscure but are universally taught (like Monaco for microstates or Citizen Kane for films) are actually massive crowd clusters.
+        </p>
+      </div>
+
+      <div class="p-6 rounded-3xl bg-[#0a1d36] border border-white/10 space-y-2">
+        <div class="text-[#8fa3c4] font-mono text-sm font-bold">Rule 03</div>
+        <h3 class="text-base font-bold text-white">No In-Game Edits</h3>
+        <p class="text-xs text-[#8fa3c4] leading-relaxed">
+          Once your submission is locked into the submarine console, the depth calculation is permanent for that daily seed. No retries or rollbacks.
+        </p>
+      </div>
+    </div>
+
+    <!-- Navigation CTA -->
+    <div class="p-6 rounded-3xl bg-[#061325] border border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <h4 class="text-base font-bold text-white">Ready to Put the Rules into Action?</h4>
+        <p class="text-xs text-[#8fa3c4]">Consult our curated 7,000m word bank or jump directly into the simulation.</p>
+      </div>
+      <div class="flex items-center gap-3 font-mono text-xs">
+        <a href="/word-bank/" class="px-4 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 text-white border border-white/10 transition-all">
+          Explore Word Bank →
+        </a>
+        <a href="/" class="px-4 py-2.5 rounded-xl bg-[#4de3ff] hover:bg-[#4de3ff]/90 text-slate-950 font-bold transition-all">
+          Play Arena
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,109 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const historicalSeeds = [
+  { date: "Today (Daily Seed)", prompt: "A country whose name starts with 'M'", topSafePick: "Micronesia (+960m)", lethalTrap: "Mexico / Madagascar (+30m)", avgDepth: "4,820m" },
+  { date: "Yesterday", prompt: "An Academy Award Best Director winner", topSafePick: "Chloé Zhao (+940m)", lethalTrap: "Steven Spielberg (+15m)", avgDepth: "5,110m" },
+  { date: "2 Days Ago", prompt: "A chemical element named after a place", topSafePick: "Berkelium / Dubnium (+980m)", lethalTrap: "Francium / Californium (+80m)", avgDepth: "4,690m" },
+  { date: "3 Days Ago", prompt: "An Olympic host city in the Southern Hemisphere", topSafePick: "Melbourne 1956 (+910m)", lethalTrap: "Sydney 2000 / Rio 2016 (+45m)", avgDepth: "5,340m" }
+];
+---
+
+<Layout
+  title="Daily Seeds & Reset Schedule | Reverse Krillion Solver"
+  description="Track daily Reverse Krillion puzzle seeds, global community depth averages, reset time countdown, and historical Hadal trench solutions."
+  canonical="/daily/"
+>
+  <div class="py-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-10">
+    <div class="space-y-3 border-b border-white/10 pb-6">
+      <div class="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#ffd166]">
+        <span>DAILY ENGINE</span>
+        <span>•</span>
+        <span>00:00 UTC SYNCHRONIZATION</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-black text-white">
+        Reverse Krillion Daily Seeds & Archive
+      </h1>
+      <p class="text-xs sm:text-sm text-[#8fa3c4] leading-relaxed">
+        The global Reverse Krillion seed resets every day at 00:00 UTC. Check community depth trends, review lethal crowd traps, and prepare for the upcoming cycle.
+      </p>
+    </div>
+
+    <!-- Countdown Clock Card -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-[#0a1d36] border border-[#ffd166]/30 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="space-y-1 text-center sm:text-left">
+        <span class="text-xs font-mono uppercase text-[#ffd166] font-bold">Global Seed Cycle</span>
+        <h2 class="text-xl font-bold text-white">Time Until Next Daily Reset</h2>
+        <p class="text-xs text-[#8fa3c4]">All players worldwide receive identical category prompts for 24 hours.</p>
+      </div>
+
+      <div class="flex items-center gap-3 font-mono text-center">
+        <div class="p-3 bg-[#061325] rounded-xl border border-white/10 min-w-[70px]">
+          <div id="clock-h" class="text-2xl font-black text-[#4de3ff]">00</div>
+          <div class="text-[9px] text-[#8fa3c4] uppercase">Hours</div>
+        </div>
+        <span class="text-xl font-bold text-white">:</span>
+        <div class="p-3 bg-[#061325] rounded-xl border border-white/10 min-w-[70px]">
+          <div id="clock-m" class="text-2xl font-black text-[#4de3ff]">00</div>
+          <div class="text-[9px] text-[#8fa3c4] uppercase">Minutes</div>
+        </div>
+        <span class="text-xl font-bold text-white">:</span>
+        <div class="p-3 bg-[#061325] rounded-xl border border-white/10 min-w-[70px]">
+          <div id="clock-s" class="text-2xl font-black text-[#ffd166]">00</div>
+          <div class="text-[9px] text-[#8fa3c4] uppercase">Seconds</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Historical Seeds Table -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-[#0a1d36] border border-white/10 space-y-5">
+      <h3 class="text-lg font-bold text-white">Recent Daily Seed Performance & Traps</h3>
+      <div class="overflow-x-auto rounded-2xl border border-white/10">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="border-b border-white/10 bg-[#061325] text-[#8fa3c4] font-mono uppercase">
+              <th class="py-3 px-4">Cycle</th>
+              <th class="py-3 px-4">Sample Prompt</th>
+              <th class="py-3 px-4 text-[#4de3ff]">High-Yield Hadal Pick</th>
+              <th class="py-3 px-4 text-[#ffd166]">Deadliest Crowd Trap</th>
+              <th class="py-3 px-4">Community Avg</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 font-mono">
+            {historicalSeeds.map(s => (
+              <tr class="hover:bg-white/5">
+                <td class="py-3.5 px-4 font-bold text-white font-sans">{s.date}</td>
+                <td class="py-3.5 px-4 text-[#8fa3c4] font-sans">{s.prompt}</td>
+                <td class="py-3.5 px-4 font-bold text-[#4de3ff]">{s.topSafePick}</td>
+                <td class="py-3.5 px-4 text-[#ffd166]">{s.lethalTrap}</td>
+                <td class="py-3.5 px-4 text-white">{s.avgDepth}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    function updateCountdown() {
+      const now = new Date();
+      const utcMidnight = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1, 0, 0, 0));
+      const diff = Math.max(0, utcMidnight.getTime() - now.getTime());
+
+      const hours = Math.floor(diff / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      const hEl = document.getElementById('clock-h');
+      const mEl = document.getElementById('clock-m');
+      const sEl = document.getElementById('clock-s');
+
+      if (hEl) hEl.textContent = String(hours).padStart(2, '0');
+      if (mEl) mEl.textContent = String(minutes).padStart(2, '0');
+      if (sEl) sEl.textContent = String(seconds).padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</Layout>

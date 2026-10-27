@@ -1,0 +1,189 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  canonical?: string;
+  schema?: Record<string, any>;
+}
+
+const {
+  title = "Reverse Krillion | Play Krillion Backwards & Inverse Trivia Online",
+  description = "Play Reverse Krillion online for free. The viral backwards word game where the rarest, least obvious answers take you to the 7,000m trench. Features interactive word bank, depth rules, and daily challenges.",
+  canonical = Astro.url.pathname,
+  schema
+} = Astro.props;
+
+const siteUrl = "https://reversekrillion.com";
+const currentUrl = `${siteUrl}${canonical}`;
+const gscToken = "6pZGzQPIH2JLdImyrfdxSFYMLbdcSCr0IUmHQQvcOs0";
+const umamiId = "0e44edc1-acaf-4d9e-ac37-392317298f6d";
+
+const defaultSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "url": siteUrl,
+      "name": "Reverse Krillion",
+      "description": "Play Reverse Krillion online. Guess the least common valid answers to plunge deep into the ocean trench.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Reverse Krillion Guild",
+        "url": siteUrl
+      }
+    },
+    {
+      "@type": "VideoGame",
+      "@id": `${siteUrl}/#game`,
+      "name": "Reverse Krillion",
+      "url": siteUrl,
+      "description": "The backwards reverse-trivia word game where obscurity equals submarine depth.",
+      "genre": ["Reverse Trivia", "Word Game", "Puzzle"],
+      "gamePlatform": ["Web Browser", "Mobile", "Desktop"],
+      "applicationCategory": "Game",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+  ]
+};
+
+const finalSchema = schema || defaultSchema;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="google-site-verification" content={gscToken} />
+    <link rel="canonical" href={currentUrl} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={currentUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content="Reverse Krillion" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Umami Analytics -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id={umamiId}></script>
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(finalSchema)} />
+  </head>
+  <body class="bg-[#020611] text-slate-100 min-h-screen flex flex-col font-sans selection:bg-[#4de3ff]/30 selection:text-white">
+    <!-- Top Navigation Header -->
+    <header class="sticky top-0 z-50 bg-[#061325]/90 backdrop-blur-md border-b border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+        <a href="/" class="flex items-center gap-2.5 group">
+          <div class="w-9 h-9 rounded-xl bg-[#0a1d36] border border-[#4de3ff]/40 flex items-center justify-center text-[#4de3ff] font-mono font-black text-lg group-hover:border-[#4de3ff] transition-all">
+            ⟲
+          </div>
+          <div class="flex flex-col">
+            <span class="text-base font-black tracking-tight text-white flex items-center gap-1.5">
+              <span>REVERSE</span>
+              <span class="text-[#4de3ff]">KRILLION</span>
+            </span>
+            <span class="text-[9px] font-mono text-[#ffd166] uppercase tracking-wider">Backwards Trivia Engine</span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="hidden md:flex items-center gap-1 text-xs font-mono">
+          <a href="/" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all">Play Arena</a>
+          <a href="/rules/" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all">Scoring Rules</a>
+          <a href="/word-bank/" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all">Word Bank</a>
+          <a href="/vs-standard/" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all">Reverse vs Normal</a>
+          <a href="/daily/" class="px-3 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all">Daily Archive</a>
+        </nav>
+
+        <!-- Mother Site Link & Action -->
+        <div class="flex items-center gap-3">
+          <a
+            href="https://krillion.si"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#0a1d36] hover:bg-[#0e2748] border border-white/10 text-xs text-[#8fa3c4] hover:text-white transition-all font-mono"
+          >
+            <span>Krillion.si Hub</span>
+            <span class="text-[#ffd166]">↗</span>
+          </a>
+          <a
+            href="/"
+            class="px-4 py-2 rounded-xl bg-[#4de3ff] hover:bg-[#4de3ff]/90 text-slate-950 font-black text-xs transition-all shadow-md shadow-[#4de3ff]/20 font-mono"
+          >
+            DIVE NOW
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Viewport Slot -->
+    <main class="flex-1">
+      <slot />
+    </main>
+
+    <!-- Global Footer -->
+    <footer class="bg-[#061325] border-t border-white/10 py-10 px-4 sm:px-6 lg:px-8 mt-16 text-xs text-[#8fa3c4]">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div class="space-y-3 md:col-span-1">
+          <div class="flex items-center gap-2 text-white font-black">
+            <span class="text-[#4de3ff] font-mono text-lg">⟲</span>
+            <span>ReverseKrillion.com</span>
+          </div>
+          <p class="text-[11px] leading-relaxed">
+            The dedicated backwards-thinking reverse trivia platform. Built for players who aim to dive beyond the 7,000m Hadal trench by avoiding common crowd answers.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-white font-mono font-bold text-xs uppercase tracking-wider mb-3">Topic Cluster</h4>
+          <ul class="space-y-2 font-mono text-[11px]">
+            <li><a href="/" class="hover:text-[#4de3ff] transition-colors">Play Reverse Mode</a></li>
+            <li><a href="/rules/" class="hover:text-[#4de3ff] transition-colors">Hadal Depth Scoring</a></li>
+            <li><a href="/word-bank/" class="hover:text-[#4de3ff] transition-colors">7,000m Rare Word Bank</a></li>
+            <li><a href="/vs-standard/" class="hover:text-[#4de3ff] transition-colors">Reverse vs Standard Krillion</a></li>
+            <li><a href="/daily/" class="hover:text-[#4de3ff] transition-colors">Daily Seeds & Solutions</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-mono font-bold text-xs uppercase tracking-wider mb-3">Sister Platforms</h4>
+          <ul class="space-y-2 font-mono text-[11px]">
+            <li><a href="https://krillion.si" target="_blank" class="hover:text-[#4de3ff] transition-colors">Krillion.si (Main Hub)</a></li>
+            <li><a href="https://krillionhints.com" target="_blank" class="hover:text-[#4de3ff] transition-colors">KrillionHints.com (Clues)</a></li>
+            <li><a href="https://krillionmovies.com" target="_blank" class="hover:text-[#4de3ff] transition-colors">KrillionMovies.com (Cinema)</a></li>
+            <li><a href="https://endlessdivegame.com" target="_blank" class="hover:text-[#4de3ff] transition-colors">EndlessDiveGame.com (Abyss)</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="text-white font-mono font-bold text-xs uppercase tracking-wider mb-3">Integrity & Fair Play</h4>
+          <p class="text-[11px] leading-relaxed mb-3">
+            Reverse Krillion operates on real-time reverse popularity mathematics. Answers are validated against global lexicon databases.
+          </p>
+          <div class="text-[10px] text-[#ffd166] font-mono">
+            Anti-Crowd Algorithm Active • 2026 Edition
+          </div>
+        </div>
+      </div>
+      <div class="max-w-7xl mx-auto border-t border-white/5 mt-8 pt-6 flex flex-col sm:flex-row items-center justify-between text-[10px]">
+        <span>© 2026-2027 ReverseKrillion.com. All rights reserved.</span>
+        <span class="mt-2 sm:mt-0">Zero cookies tracking • Pure privacy-friendly analytics</span>
+      </div>
+    </footer>
+  </body>
+</html>

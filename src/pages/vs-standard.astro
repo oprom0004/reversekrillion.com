@@ -1,0 +1,144 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const comparisons = [
+  {
+    dimension: "Core Win Condition",
+    standard: "Find the single canonical answer or most famous match.",
+    reverse: "Find the valid answer submitted by the lowest % of global players."
+  },
+  {
+    dimension: "Player Psychology",
+    standard: "Speed & top-of-mind recall (name the most famous example instantly).",
+    reverse: "Anti-consensus deliberation (suppress obvious thoughts, dig for deep cuts)."
+  },
+  {
+    dimension: "Scoring Metric",
+    standard: "Binary 0 / 1 (correct vs incorrect) or speed-based points.",
+    reverse: "Continuous bathymetric depth (+0m to +1,000m) governed by inverse exponential decay."
+  },
+  {
+    dimension: "The Lethal Hazard",
+    standard: "Incorrect factual statements or invalid typos.",
+    reverse: "Submitting a 100% correct fact that 35% of other players also thought of."
+  },
+  {
+    dimension: "Endgame Benchmark",
+    standard: "100% accuracy streak on a trivia board.",
+    reverse: "Cracking the 7,000m Hadal Trench threshold in 7 consecutive rounds."
+  },
+  {
+    dimension: "Knowledge Distribution",
+    standard: "Rewards broad surface-level pop culture literacy.",
+    reverse: "Rewards specialized, long-tail knowledge (micronations, B-sides, pre-code cinema)."
+  }
+];
+
+const biases = [
+  {
+    title: "1. The Availability Cascade",
+    desc: "When prompted with 'Name an African country,' your brain instantly fires Nigeria, Egypt, or South Africa because they appear frequently in global news. In Reverse Krillion, you must train your mind to discard the first 3 thoughts that pop into your head."
+  },
+  {
+    title: "2. The Prestige Ego Trap",
+    desc: "In standard cinema trivia, naming The Godfather, Citizen Kane, or 2001: A Space Odyssey signals good taste. In Reverse Krillion, prestige answers are instant death traps. You must learn to value forgotten winners like Cavalcade (1933) over iconic masterpieces."
+  },
+  {
+    title: "3. The Spelling Hesitation",
+    desc: "Players often know an obscure answer (like Liechtenstein or Kyrgyzstan) but chicken out and submit an obvious word like France because they fear misspelling. Reverse Krillion features forgiving fuzzy-matching aliases to reward courage."
+  },
+  {
+    title: "4. The Keynesian Reverse Beauty Contest",
+    desc: "In classic game theory, Keynes described a newspaper contest where players pick the faces they think the crowd will choose. Reverse Krillion is the exact opposite: you must predict what the crowd will think of, and choose the valid blind spot they will collectively overlook."
+  }
+];
+
+const breadcrumbs = [
+  { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://reversekrillion.com/" },
+  { "@type": "ListItem", "position": 2, "name": "Vs Standard", "item": "https://reversekrillion.com/vs-standard/" }
+];
+---
+
+<Layout
+  title="Reverse Krillion vs Standard Trivia | Game Theory & Cognitive Shift"
+  description="Compare Reverse Krillion against traditional trivia games. Discover why pub trivia champions fail in reverse games, and how anti-consensus heuristics work."
+  canonical="/vs-standard/"
+>
+  <div class="py-8 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto space-y-12">
+    
+    <!-- Header -->
+    <div class="space-y-3 border-b border-white/10 pb-6">
+      <div class="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#4de3ff]">
+        <span>⚖️ GAME THEORY ANALYSIS</span>
+        <span>•</span>
+        <span>THE REVERSE HEURISTIC SHIFT</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-white">
+        Reverse Krillion vs Standard Pub Trivia
+      </h1>
+      <p class="text-xs sm:text-sm text-[#8fa3c4] leading-relaxed max-w-3xl">
+        Why do Jeopardy champions and pub trivia veterans frequently get crushed in Reverse Krillion? Because conventional trivia trains rapid retrieval of famous landmarks, whereas Reverse Krillion strictly rewards long-tail obscurity.
+      </p>
+    </div>
+
+    <!-- Comparison Table -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-[#0a1d36] border border-white/10 space-y-6">
+      <div class="border-b border-white/10 pb-4">
+        <h2 class="text-xl font-bold text-white">Direct Side-by-Side Comparison</h2>
+      </div>
+
+      <div class="overflow-x-auto rounded-2xl border border-white/10">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="bg-[#061325] text-[#8fa3c4] font-mono uppercase border-b border-white/10">
+              <th class="py-3 px-4 w-1/4">Dimension</th>
+              <th class="py-3 px-4 w-3/8 text-slate-300">Standard Trivia / Jeopardy</th>
+              <th class="py-3 px-4 w-3/8 text-[#4de3ff]">Reverse Krillion (Trench Mechanics)</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 font-sans">
+            {comparisons.map(c => (
+              <tr class="hover:bg-white/5">
+                <td class="py-3.5 px-4 font-bold text-white font-mono">{c.dimension}</td>
+                <td class="py-3.5 px-4 text-slate-400">{c.standard}</td>
+                <td class="py-3.5 px-4 text-[#ffd166] font-medium">{c.reverse}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- The 4 Cognitive Biases -->
+    <div class="space-y-6">
+      <div class="border-b border-white/10 pb-4">
+        <h2 class="text-xl sm:text-2xl font-bold text-white">The 4 Cognitive Biases You Must Unlearn</h2>
+        <p class="text-xs text-[#8fa3c4] mt-1">Mental traps that cause intelligent players to surface prematurely.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {biases.map(b => (
+          <div class="p-6 sm:p-7 rounded-3xl bg-[#0a1d36] border border-white/10 space-y-2 shadow-lg">
+            <h3 class="text-lg font-bold text-white">{b.title}</h3>
+            <p class="text-xs text-[#8fa3c4] leading-relaxed">
+              {b.desc}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Navigation Footer -->
+    <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
+      <a href="/" class="text-[#4de3ff] hover:underline flex items-center gap-1">
+        <span>← Back to Reverse Krillion Arena</span>
+      </a>
+      <div class="flex items-center gap-4 text-[#8fa3c4]">
+        <a href="/word-bank/" class="hover:text-white">Rare Word Bank ↗</a>
+        <a href="/rules/" class="hover:text-white">Rules & Scoring ↗</a>
+        <a href="/daily/" class="hover:text-white">Daily Seeds ↗</a>
+      </div>
+    </div>
+
+  </div>
+</Layout>

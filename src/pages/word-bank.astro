@@ -1,0 +1,218 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const wordsData = [
+  // Geography (Enclaves, Island Nations, Obscure Capitals)
+  { category: "geography", answer: "Tuvalu", prompt: "Sovereign Island Nation", rarity: "0.6%", yield: "+994m", zone: "Hadal", note: "Fourth smallest nation on earth; tiny population avoids trivia recall." },
+  { category: "geography", answer: "Ngerulmud", prompt: "World Capital City (Palau)", rarity: "0.4%", yield: "+998m", zone: "Hadal", note: "Least populous national capital city in the world (~400 residents)." },
+  { category: "geography", answer: "Liechtenstein", prompt: "Doubly Landlocked Country", rarity: "1.8%", yield: "+970m", zone: "Hadal", note: "One of only two doubly landlocked countries (with Uzbekistan)." },
+  { category: "geography", answer: "São Tomé and Príncipe", prompt: "Island Nation in Africa", rarity: "0.9%", yield: "+991m", zone: "Hadal", note: "Equatorial volcanic archipelago; prime sub-1% answer." },
+  { category: "geography", answer: "Vanuatu", prompt: "Oceania Sovereign State", rarity: "1.4%", yield: "+982m", zone: "Hadal", note: "South Pacific archipelago; rarely entered compared to Fiji or Samoa." },
+  { category: "geography", answer: "Suriname", prompt: "South American Sovereign Country", rarity: "2.1%", yield: "+965m", zone: "Hadal", note: "Dutch-speaking enclave; far less common than Brazil or Argentina." },
+  { category: "geography", answer: "Eswatini", prompt: "African Monarchy", rarity: "1.2%", yield: "+986m", zone: "Hadal", note: "Formerly Swaziland; low recall across casual trivia gamers." },
+  { category: "geography", answer: "Kiribati", prompt: "Country Spanning All 4 Hemispheres", rarity: "0.8%", yield: "+993m", zone: "Hadal", note: "Only nation situated in North, South, East, and West hemispheres." },
+  { category: "geography", answer: "France", prompt: "Country in Europe (Trap)", rarity: "48.2%", yield: "+28m", zone: "Trap", note: "Fatal crowd trap; entered instinctively by half the lobby." },
+  { category: "geography", answer: "Vatican City", prompt: "Sovereign Microstate (Trap)", rarity: "39.5%", yield: "+52m", zone: "Trap", note: "Top-of-mind microstate trap; yields almost no depth." },
+
+  // Cinema & Directors
+  { category: "movies", answer: "Cavalcade (1933)", prompt: "Best Picture Oscar Winner", rarity: "0.4%", yield: "+998m", zone: "Hadal", note: "Frank Lloyd British drama; completely absent from modern pop culture." },
+  { category: "movies", answer: "Wings (1927)", prompt: "First Best Picture Winner", rarity: "1.4%", yield: "+980m", zone: "Hadal", note: "Silent aerial war epic; ideal weapon for Oscar prompts." },
+  { category: "movies", answer: "Stalker (1979)", prompt: "1970s Sci-Fi Masterpiece", rarity: "0.6%", yield: "+994m", zone: "Hadal", note: "Tarkovsky masterpiece; vast majority guess Star Wars or Alien." },
+  { category: "movies", answer: "The Duellists (1977)", prompt: "Directed by Ridley Scott", rarity: "0.9%", yield: "+988m", zone: "Hadal", note: "Ridley Scott's debut historical drama; avoids Gladiator trap." },
+  { category: "movies", answer: "Marty (1955)", prompt: "Best Picture Winner under 100 Mins", rarity: "2.8%", yield: "+945m", zone: "Hadal", note: "Ernest Borgnine classic; also won Cannes Palme d'Or." },
+  { category: "movies", answer: "Cleo from 5 to 7", prompt: "French New Wave Film", rarity: "1.1%", yield: "+985m", zone: "Hadal", note: "Agnes Varda classic; sub-1% answer for female auteur prompts." },
+  { category: "movies", answer: "Cutthroat Island", prompt: "High-Budget 1990s Action Film", rarity: "0.5%", yield: "+996m", note: "Legendary flop; prime weapon for $100M budget prompts.", zone: "Hadal" },
+  { category: "movies", answer: "Titanic (1997)", prompt: "Best Picture Winner (Trap)", rarity: "56.2%", yield: "+12m", zone: "Trap", note: "Highest submitted film in online trivia history; avoid always." },
+
+  // Chemistry & Science
+  { category: "science", answer: "Praseodymium (Pr)", prompt: "Chemical Element (Lanthanide)", rarity: "0.4%", yield: "+998m", zone: "Hadal", note: "Atomic number 59; virtually zero overlap with casual players." },
+  { category: "science", answer: "Dubnium (Db)", prompt: "Element Named After a Place", rarity: "0.8%", yield: "+992m", zone: "Hadal", note: "Named after Dubna, Russia; far rarer than Francium or Californium." },
+  { category: "science", answer: "Lise Meitner", prompt: "Nuclear Fission Pioneer", rarity: "1.9%", yield: "+970m", zone: "Hadal", note: "Co-discovered nuclear fission; elemental Meitnerium namesake." },
+  { category: "science", answer: "Osmium (Os)", prompt: "Densest Natural Element", rarity: "2.4%", yield: "+955m", zone: "Hadal", note: "Twice as dense as lead; high-descent chemistry jewel." },
+  { category: "science", answer: "Enrico Fermi", prompt: "Nobel Prize Winning Physicist", rarity: "3.2%", yield: "+925m", zone: "Hadal", note: "Architect of the atomic age; safe harbor from Einstein trap." },
+  { category: "science", answer: "Thulium (Tm)", prompt: "Rare Earth Metal", rarity: "0.5%", yield: "+997m", zone: "Hadal", note: "Second-least abundant lanthanide; perfect +1,000m score." },
+  { category: "science", answer: "Oxygen (O)", prompt: "Chemical Element (Trap)", rarity: "44.0%", yield: "+42m", zone: "Trap", note: "Automatic submission for general science; severe penalty." },
+  { category: "science", answer: "Albert Einstein", prompt: "Famous Physicist (Trap)", rarity: "68.2%", yield: "+4m", zone: "Trap", note: "The most common scientific name in human trivia history." },
+
+  // History & World Leaders
+  { category: "history", answer: "Pertinax", prompt: "Roman Emperor", rarity: "0.6%", yield: "+995m", zone: "Hadal", note: "Reigned for 86 days in 193 AD; avoids Caesar and Nero traps." },
+  { category: "history", answer: "Treaty of Tordesillas", prompt: "Historical Global Treaty (1494)", rarity: "2.1%", yield: "+962m", zone: "Hadal", note: "Divided newly discovered lands between Spain and Portugal." },
+  { category: "history", answer: "Ashoka the Great", prompt: "Ancient World Ruler (Maurya)", rarity: "2.8%", yield: "+940m", zone: "Hadal", note: "Indian Emperor of Maurya Dynasty; highly safe history pick." },
+  { category: "history", answer: "Galba", prompt: "Roman Emperor (Year of 4 Emperors)", rarity: "0.8%", yield: "+991m", zone: "Hadal", note: "First emperor of the Year of the Four Emperors (68 AD)." },
+  { category: "history", answer: "Chester A. Arthur", prompt: "US President", rarity: "1.5%", yield: "+978m", zone: "Hadal", note: "21st President; far rarer than Washington, Lincoln, or FDR." },
+  { category: "history", answer: "Julius Caesar", prompt: "Roman Leader (Trap)", rarity: "52.4%", yield: "+18m", zone: "Trap", note: "Fatal crowd trap (plus, strictly speaking, was Dictator, not Emperor!)." },
+
+  // Sports & Olympics
+  { category: "sports", answer: "Melbourne 1956", prompt: "Olympic Games Host City", rarity: "1.2%", yield: "+984m", zone: "Hadal", note: "First Games in Southern Hemisphere; equestrian events held in Sweden." },
+  { category: "sports", answer: "Uruguay (1930)", prompt: "FIFA World Cup Champion", rarity: "3.4%", yield: "+915m", zone: "Hadal", note: "Inaugural tournament host and winner; safer than Brazil or Germany." },
+  { category: "sports", answer: "Nottingham Forest", prompt: "European Cup / Champions League Winner", rarity: "2.2%", yield: "+966m", zone: "Hadal", note: "Won back-to-back European Cups under Brian Clough in 1979/1980." },
+  { category: "sports", answer: "Antwerp 1920", prompt: "Summer Olympics Host City", rarity: "0.9%", yield: "+990m", zone: "Hadal", note: "Post-WWI Games; first appearance of Olympic flag." },
+  { category: "sports", answer: "Real Madrid", prompt: "Champions League Winner (Trap)", rarity: "55.0%", yield: "+11m", zone: "Trap", note: "The ultimate European football crowd trap; zero depth awarded." }
+];
+
+const breadcrumbs = [
+  { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://reversekrillion.com/" },
+  { "@type": "ListItem", "position": 2, "name": "Word Bank", "item": "https://reversekrillion.com/word-bank/" }
+];
+---
+
+<Layout
+  title="7,000m Rare Word Bank & Clues | Reverse Krillion Strategy"
+  description="Exhaustive database of sub-1% rarity answers across Geography, Cinema, Science, History, and Sports. Master the 7,000m Hadal Trench in Reverse Krillion."
+  canonical="/word-bank/"
+>
+  <div class="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
+    
+    <!-- Header -->
+    <div class="space-y-3 border-b border-white/10 pb-6">
+      <div class="inline-flex items-center gap-2 text-xs font-mono font-bold text-[#ffd166]">
+        <span>💎 7,000m ENCYCLOPEDIA</span>
+        <span>•</span>
+        <span>SUB-1% ARCHIVE</span>
+      </div>
+      <h1 class="text-3xl sm:text-5xl font-black text-white">
+        Reverse Krillion 7,000m Rare Word Bank
+      </h1>
+      <p class="text-xs sm:text-sm text-[#8fa3c4] max-w-3xl leading-relaxed">
+        Success in Reverse Krillion requires an inverted knowledge base. Below is our verified catalog of low-popularity answers that consistently deliver +950m to +1,000m Hadal depth. Use the live search and category filters to arm your mental arsenal.
+      </p>
+    </div>
+
+    <!-- Filterable Word Bank Table -->
+    <div class="p-6 sm:p-8 rounded-3xl bg-[#0a1d36] border border-white/10 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-white/10 pb-5">
+        <div>
+          <h2 class="text-xl sm:text-2xl font-black text-white">Curated Sub-1% Answer Vault</h2>
+          <p class="text-xs text-[#8fa3c4] mt-1">Search by answer, prompt keyword, or filter by category.</p>
+        </div>
+        <div class="text-xs font-mono text-[#ffd166]">
+          37 Benchmark Answers Displayed
+        </div>
+      </div>
+
+      <!-- Controls -->
+      <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+        <input
+          id="wb-search"
+          type="text"
+          placeholder="Search answer or category (e.g. Tuvalu, Cavalcade, Praseodymium)..."
+          class="bg-[#061325] border border-white/15 focus:border-[#ffd166] rounded-xl px-4 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none font-sans sm:w-80"
+        />
+
+        <div class="flex flex-wrap items-center gap-1.5 text-xs">
+          <button type="button" class="cat-btn px-3 py-1.5 rounded-lg bg-[#ffd166] text-slate-950 font-bold" data-cat="all">
+            All Categories
+          </button>
+          <button type="button" class="cat-btn px-3 py-1.5 rounded-lg bg-[#061325] text-slate-300 hover:text-white border border-white/10" data-cat="geography">
+            Geography
+          </button>
+          <button type="button" class="cat-btn px-3 py-1.5 rounded-lg bg-[#061325] text-slate-300 hover:text-white border border-white/10" data-cat="movies">
+            Cinema & Arts
+          </button>
+          <button type="button" class="cat-btn px-3 py-1.5 rounded-lg bg-[#061325] text-slate-300 hover:text-white border border-white/10" data-cat="science">
+            Science & Chem
+          </button>
+          <button type="button" class="cat-btn px-3 py-1.5 rounded-lg bg-[#061325] text-slate-300 hover:text-white border border-white/10" data-cat="history">
+            World History
+          </button>
+          <button type="button" class="cat-btn px-3 py-1.5 rounded-lg bg-[#061325] text-slate-300 hover:text-white border border-white/10" data-cat="sports">
+            Sports & Olympics
+          </button>
+        </div>
+      </div>
+
+      <!-- Table -->
+      <div class="overflow-x-auto rounded-2xl border border-white/10">
+        <table class="w-full text-left text-xs border-collapse">
+          <thead>
+            <tr class="border-b border-white/10 bg-[#061325] text-[#8fa3c4] font-mono uppercase">
+              <th class="py-3 px-4">Category</th>
+              <th class="py-3 px-4">Verified Answer</th>
+              <th class="py-3 px-4">Prompt Category</th>
+              <th class="py-3 px-4 text-[#ffd166]">Global Pick Rate</th>
+              <th class="py-3 px-4">Depth Yield</th>
+              <th class="py-3 px-4">Zone</th>
+              <th class="py-3 px-4 hidden md:table-cell">Strategic Value</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-white/5 font-mono">
+            {wordsData.map(w => (
+              <tr class="hover:bg-white/5 word-row" data-cat={w.category} data-answer={w.answer.toLowerCase()} data-prompt={w.prompt.toLowerCase()}>
+                <td class="py-3.5 px-4 text-[#8fa3c4] uppercase text-[10px] font-bold">{w.category}</td>
+                <td class="py-3.5 px-4 font-bold text-white font-sans text-sm">
+                  {w.zone === 'Trap' && <span class="text-rose-400 mr-1.5">⚠️</span>}
+                  {w.zone === 'Hadal' && <span class="text-[#ffd166] mr-1.5">💎</span>}
+                  <span>{w.answer}</span>
+                </td>
+                <td class="py-3.5 px-4 text-slate-300 font-sans">{w.prompt}</td>
+                <td class={`py-3.5 px-4 font-bold ${w.zone === 'Trap' ? 'text-rose-400' : 'text-[#ffd166]'}`}>
+                  {w.rarity}
+                </td>
+                <td class="py-3.5 px-4 font-bold text-white">{w.yield}</td>
+                <td class="py-3.5 px-4">
+                  <span class={`inline-block px-2.5 py-0.5 rounded-full text-[10px] border ${
+                    w.zone === 'Hadal' ? 'border-[#ffd166]/40 text-[#ffd166] bg-[#ffd166]/10' :
+                    w.zone === 'Abyssal' ? 'border-[#4de3ff]/40 text-[#4de3ff] bg-[#4de3ff]/10' :
+                    'border-rose-800/40 text-rose-300 bg-rose-950/40 font-bold'
+                  }`}>
+                    {w.zone}
+                  </span>
+                </td>
+                <td class="py-3.5 px-4 text-[#8fa3c4] font-sans text-[11px] leading-tight hidden md:table-cell max-w-xs">{w.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Navigation Footer -->
+    <div class="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono">
+      <a href="/" class="text-[#ffd166] hover:underline flex items-center gap-1">
+        <span>← Back to Reverse Krillion Arena</span>
+      </a>
+      <div class="flex items-center gap-4 text-[#8fa3c4]">
+        <a href="/rules/" class="hover:text-white">Rules & Scoring ↗</a>
+        <a href="/vs-standard/" class="hover:text-white">Reverse vs Standard ↗</a>
+        <a href="/daily/" class="hover:text-white">Daily Seeds ↗</a>
+      </div>
+    </div>
+
+  </div>
+
+  <script is:inline>
+    const search = document.getElementById('wb-search');
+    const rows = document.querySelectorAll('.word-row');
+    const btns = document.querySelectorAll('.cat-btn');
+    let activeCat = 'all';
+
+    function filterWords() {
+      const q = search ? search.value.toLowerCase().trim() : '';
+      rows.forEach(r => {
+        const ans = r.dataset.answer || '';
+        const prompt = r.dataset.prompt || '';
+        const cat = r.dataset.cat || '';
+        const matchesQ = ans.includes(q) || prompt.includes(q);
+        const matchesCat = activeCat === 'all' || cat === activeCat;
+        if (matchesQ && matchesCat) {
+          r.style.display = '';
+        } else {
+          r.style.display = 'none';
+        }
+      });
+    }
+
+    if (search) search.addEventListener('input', filterWords);
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => {
+          b.className = 'cat-btn px-3 py-1.5 rounded-lg bg-[#061325] text-slate-300 hover:text-white border border-white/10';
+        });
+        btn.className = 'cat-btn px-3 py-1.5 rounded-lg bg-[#ffd166] text-slate-950 font-bold';
+        activeCat = btn.dataset.cat || 'all';
+        filterWords();
+      });
+    });
+  </script>
+</Layout>
