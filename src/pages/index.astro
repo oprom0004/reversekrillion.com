@@ -54,8 +54,22 @@ const faqSchema = {
   description="Play Reverse Krillion online for free! Enter rare trivia answers to plunge your submarine to 7,000m. Daily clues, trench solver, and crowd trap cheatsheet."
   schema={{ ...breadcrumbsSchema, ...faqSchema }}
 >
-  <div class="py-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-8">
+  <div class="py-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-6">
     
+    <!-- Hero H1 Section -->
+    <div class="space-y-2">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#0a1d36] border border-[#4de3ff]/30 text-[#4de3ff] text-xs font-mono uppercase tracking-wider">
+        <span class="w-2 h-2 rounded-full bg-[#4de3ff] animate-pulse"></span>
+        Backwards Word Puzzle
+      </div>
+      <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+        Reverse Krillion: Inverted Abyss Word & Trivia Game
+      </h1>
+      <p class="text-xs sm:text-sm text-[#8fa3c4] max-w-3xl leading-relaxed">
+        The word puzzle where the least popular answer is the greatest winner. Plunge past 7,000 meters into the Hadal Trench by avoiding popular headline guesses and entering factually valid, low-frequency candidates.
+      </p>
+    </div>
+
     <!-- TOP PLAYABLE GAME VIEWPORT (INSTANT PLAY AT TOP) -->
     <div id="game-arena" class="rounded-3xl bg-[#0a1d36] border border-[#4de3ff]/30 p-2 sm:p-3 shadow-2xl overflow-hidden">
       <!-- Game Action Bar -->
